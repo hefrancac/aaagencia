@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>aaagência — Mobile Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600&family=Fraunces:ital,wght@1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5EFDF;
+  --bg-2:#EBE2C8;
+  --ink:#1A0140;
+  --ink-2:#4A1B7A;
+  --ink-3:#9A82B8;
+  --purple:#6B1FA0;
+  --accent:#C5F02D;
+  --accent-2:#FFD60A;
+  --accent-3:#FF2D8F;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  padding:60px clamp(20px,4vw,60px) 80px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* HEADER */
+.head{
+  max-width:1400px;margin:0 auto 56px;
+  display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:end;
+}
+.head__title{
+  font-family:'Anton',Impact,sans-serif;
+  font-size:clamp(48px,7vw,96px);
+  line-height:.92;letter-spacing:-.03em;text-transform:uppercase;
+  color:var(--purple);
+}
+.head__title em{
+  font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:300;
+  color:var(--accent-3);text-transform:none;letter-spacing:-.04em;
+}
+.head__lead{
+  font-size:16px;color:var(--ink-2);line-height:1.55;max-width:420px;
+}
+.head__lead b{color:var(--ink);font-weight:500}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-2);margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:24px;height:1.5px;background:var(--accent-3);display:block}
+.eyebrow b{color:var(--accent-3);font-weight:500}
+
+/* PHONES STAGE */
+.stage{
+  max-width:1400px;margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(360px,1fr));
+  gap:48px;
+  align-items:start;
+}
+.slot{display:flex;flex-direction:column;gap:18px;align-items:center}
+.slot__caption{
+  text-align:left;width:100%;max-width:380px;
+}
+.slot__num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent-3);font-weight:500;margin-bottom:6px;
+}
+.slot__title{
+  font-family:'Anton',Impact,sans-serif;
+  font-size:28px;line-height:1;letter-spacing:-.02em;text-transform:uppercase;
+  color:var(--purple);margin-bottom:8px;
+}
+.slot__desc{
+  font-size:14px;color:var(--ink-2);line-height:1.5;
+}
+
+/* PHONE FRAME */
+.phone{
+  width:380px;max-width:100%;
+  aspect-ratio:380/780;
+  background:var(--ink);
+  border-radius:48px;
+  padding:14px;
+  position:relative;
+  box-shadow:
+    0 1px 0 1px rgba(255,255,255,.05) inset,
+    0 30px 60px -20px rgba(26,1,64,.35),
+    0 12px 24px -10px rgba(26,1,64,.25);
+}
+.phone::before{
+  content:"";position:absolute;
+  top:22px;left:50%;transform:translateX(-50%);
+  width:120px;height:28px;background:#000;border-radius:18px;
+  z-index:3;pointer-events:none;
+}
+.phone::after{
+  content:"";position:absolute;
+  bottom:8px;left:50%;transform:translateX(-50%);
+  width:120px;height:4px;background:rgba(255,255,255,.5);border-radius:4px;
+  z-index:3;pointer-events:none;
+}
+.phone__screen{
+  width:100%;height:100%;
+  border-radius:36px;overflow:hidden;
+  background:var(--bg);position:relative;
+}
+.phone__screen iframe{
+  width:100%;height:100%;border:0;display:block;
+  background:var(--bg);
+}
+.phone__time{
+  position:absolute;top:16px;left:24px;z-index:2;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:13px;color:var(--ink);
+  pointer-events:none;
+}
+.phone__icons{
+  position:absolute;top:16px;right:24px;z-index:2;
+  display:flex;gap:5px;align-items:center;
+  pointer-events:none;
+}
+.phone__icons i{display:block;width:14px;height:9px;border:1.2px solid var(--ink);border-radius:2px;position:relative}
+.phone__icons i::after{content:"";position:absolute;left:1px;top:1px;bottom:1px;width:70%;background:var(--ink);border-radius:1px}
+.phone__icons s{display:block;width:14px;height:9px;background:
+  conic-gradient(from -90deg at 50% 100%, var(--ink) 0 60deg, transparent 60deg);
+  -webkit-mask:radial-gradient(circle at 50% 100%, #000 0 35%, transparent 35.5% 50%, #000 50.5% 75%, transparent 75.5%);
+}
+
+/* FEATURES LIST */
+.features{
+  max-width:1400px;margin:80px auto 0;
+  background:var(--purple);
+  border-radius:16px;
+  padding:clamp(40px,6vw,72px) clamp(28px,5vw,60px);
+  color:var(--bg);
+  position:relative;overflow:hidden;
+}
+.features::before{
+  content:"";position:absolute;
+  width:50%;aspect-ratio:1;border-radius:50%;
+  background:var(--accent-3);
+  filter:blur(120px);opacity:.4;
+  bottom:-30%;right:-15%;pointer-events:none;
+}
+.features > *{position:relative;z-index:1}
+.features__head{margin-bottom:48px;max-width:720px}
+.features__head .eyebrow{color:var(--accent)}
+.features__head .eyebrow::before{background:var(--accent)}
+.features__head .eyebrow b{color:var(--accent)}
+.features__title{
+  font-family:'Anton',Impact,sans-serif;
+  font-size:clamp(36px,5vw,64px);line-height:.95;letter-spacing:-.025em;
+  text-transform:uppercase;color:var(--bg);
+}
+.features__title em{
+  font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:300;
+  color:var(--accent-2);text-transform:none;letter-spacing:-.03em;
+}
+.features__grid{
+  display:grid;grid-template-columns:repeat(auto-fit, minmax(240px,1fr));gap:0;
+  border-top:1px solid rgba(245,239,223,.18);
+}
+.feat{
+  padding:28px 24px 28px 0;
+  border-bottom:1px solid rgba(245,239,223,.18);
+  border-right:1px solid rgba(245,239,223,.18);
+}
+.feat:last-child{border-right:0}
+@media(max-width:640px){.feat{border-right:0}}
+.feat__num{
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;margin-bottom:14px;
+}
+.feat__title{
+  font-family:'Anton',Impact,sans-serif;
+  font-size:22px;line-height:1.05;letter-spacing:-.015em;text-transform:uppercase;
+  color:var(--bg);margin-bottom:10px;
+}
+.feat__desc{
+  font-size:14px;color:var(--bg);opacity:.78;line-height:1.55;
+}
+
+/* FOOT */
+.foot{
+  max-width:1400px;margin:60px auto 0;
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;
+  font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);line-height:1.7;
+  border-top:1px solid rgba(26,1,64,.14);padding-top:28px;
+}
+.foot b{color:var(--purple);font-weight:500}
+
+@media(max-width:760px){
+  .head{grid-template-columns:1fr;gap:24px}
+  .stage{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="head">
+  <h1 class="head__title">
+    Mobile <em>preview</em><br>aaagência.
+  </h1>
+  <p class="head__lead">
+    O site é totalmente <b>responsivo</b>. Abaixo, frames reais do navegador móvel renderizando o arquivo <code>aaagencia.html</code> em diferentes pontos da página. Toque ou role dentro de cada celular pra interagir.
+  </p>
+</header>
+
+<section class="stage">
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#top" loading="lazy" title="Hero mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/01 — abertura</div>
+      <h3 class="slot__title">Hero · hambúrguer</h3>
+      <p class="slot__desc">Logo "aaa." na esquerda, ícone de menu na direita. CTA "Seja Cliente" desce para os botões dentro do hero. Tipografia massiva continua quebrando em três linhas, com itálico rosa em "marketing".</p>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#servicos" loading="lazy" title="Serviços mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/02 — serviços</div>
+      <h3 class="slot__title">Lista editorial</h3>
+      <p class="slot__desc">Os 9 serviços viram lista vertical. A coluna "categoria" some, sobra o número e o nome. Tap acende a descrição. O preview que segue o cursor é desligado em mobile.</p>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#coworking" loading="lazy" title="Coworking mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/03 — coworking</div>
+      <h3 class="slot__title">Bloco roxo · stack</h3>
+      <p class="slot__desc">As duas colunas viram pilha vertical. Card cream listrado fica em cima, texto + estatísticas + CTA lima embaixo. Os cantos arredondados somem pra ocupar a tela toda.</p>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#projetos" loading="lazy" title="Projetos mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/04 — projetos</div>
+      <h3 class="slot__title">Cards 1×1</h3>
+      <p class="slot__desc">A grid 12-col assimétrica vira coluna única — todos os cards no mesmo aspect ratio. Cada um mantém a cor sólida (roxo+lima, rosa, amarelo+roxo, lima outline).</p>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#equipe" loading="lazy" title="Equipe mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/05 — equipe</div>
+      <h3 class="slot__title">Time empilhado</h3>
+      <p class="slot__desc">Os três cards (Gabriella, Eduardo, vaga aberta) ficam um sobre o outro, full-width. O hover de preencher de roxo continua funcionando no toque.</p>
+    </div>
+  </div>
+
+  <div class="slot">
+    <div class="phone">
+      <div class="phone__time">9:41</div>
+      <div class="phone__icons"><i></i></div>
+      <div class="phone__screen">
+        <iframe src="./aaagencia.html#contato" loading="lazy" title="Contato mobile"></iframe>
+      </div>
+    </div>
+    <div class="slot__caption">
+      <div class="slot__num">/06 — contato</div>
+      <h3 class="slot__title">Form sem caixa</h3>
+      <p class="slot__desc">Dados de contato em cima, formulário embaixo. Os campos continuam sem borda, só o underline preto que vira rosa no foco. Botão lima "Enviar mensagem" alinhado à esquerda.</p>
+    </div>
+  </div>
+
+</section>
+
+<section class="features">
+  <div class="features__head">
+    <div class="eyebrow"><b>·</b>&nbsp;decisões mobile</div>
+    <h2 class="features__title">O que <em>muda</em> no celular.</h2>
+  </div>
+
+  <div class="features__grid">
+    <div class="feat">
+      <div class="feat__num">/01</div>
+      <h4 class="feat__title">Cursor desligado</h4>
+      <p class="feat__desc">Em viewports ≤900px o cursor customizado é completamente removido. Mouse parallax, magnetic buttons e preview que segue o cursor também — coisas que só fazem sentido com ponteiro.</p>
+    </div>
+    <div class="feat">
+      <div class="feat__num">/02</div>
+      <h4 class="feat__title">Menu fullscreen</h4>
+      <p class="feat__desc">O hamburger abre um overlay roxo de tela cheia, com os links em tipografia gigante (Anton, ~72px). Tap em qualquer link fecha o menu e rola pra seção.</p>
+    </div>
+    <div class="feat">
+      <div class="feat__num">/03</div>
+      <h4 class="feat__title">Tipografia fluida</h4>
+      <p class="feat__desc">Todo headline usa <code>clamp()</code> em CSS — escala automaticamente entre o mínimo (legível em 320px) e o máximo (impactante em desktop). Sem breakpoints adicionais.</p>
+    </div>
+    <div class="feat">
+      <div class="feat__num">/04</div>
+      <h4 class="feat__title">Grids colapsam</h4>
+      <p class="feat__desc">Sobre, Coworking, Equipe, Projetos e Contato viram coluna única. As bordas arredondadas e margens laterais dos blocos coloridos somem pra ocupar a tela inteira.</p>
+    </div>
+    <div class="feat">
+      <div class="feat__num">/05</div>
+      <h4 class="feat__title">Loader e marquee</h4>
+      <p class="feat__desc">A intro com contador e o marquee infinito continuam — mas o marquee tem a animação <code>prefers-reduced-motion</code> automática se o usuário pedir menos movimento.</p>
+    </div>
+    <div class="feat">
+      <div class="feat__num">/06</div>
+      <h4 class="feat__title">Toque, não hover</h4>
+      <p class="feat__desc">Os efeitos de hover (preenchimento dos botões, expansão dos serviços, fill roxo da equipe) viram efeitos de <code>:active</code>/tap no celular — visual continua, gatilho muda.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div>
+    <b>aaagência</b><br>
+    Mobile preview · 380px width
+  </div>
+  <div>
+    Para ver no celular real:<br>
+    abra <b>aaagencia.html</b> direto
+  </div>
+</footer>
+
+</body>
+</html>
